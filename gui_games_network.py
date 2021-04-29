@@ -18,14 +18,14 @@ class NetworkClient:
         ip_list = ['192.168.1.20', '192.168.1.3']
         self.port = 54320
         for self.server_ip in ip_list:
-            print(f'[CLIENT] Attempting to connect to {self.server_ip}')
+            print(f'[CLIENT] Attempting to connect to Server at {self.server_ip}')
             try:
                 self.addr = (self.server_ip, self.port)
                 self.id = self.connect()
-                print('[CLIENT] Connection Successful.')
+                print('[CLIENT] Server Connection Successful.')
                 break
             except:
-                print('[CLIENT] Connection Error.')
+                print('[CLIENT] Server Connection Error.')
 
 
     def connect(self):

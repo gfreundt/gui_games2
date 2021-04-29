@@ -8,23 +8,22 @@ def find_game_path():
             return path
 
 def colors():
-	BLACK = (0, 0, 0)
-	WHITE = (255, 255, 255)
-	BLUE = (0, 0, 255)
-	colors = [i for i in [BLACK, WHITE, BLUE]]
+	colors = {'BLACK': (0,0,0), 'WHITE': (255,255,255), 'BLUE': (0,0,255)}
 	return colors
 
 
 def screen(path):
 	 glogo = os.path.join(path, '_Resources', 'Images', 'G_logo.png')
 	 if "D:" in path:
-	 	screen_coords = (2500,30)
+	 	screen_pos = (2500,30)
 	 elif 'gfreu' in path:
-	 	screen_coords = (5,5)
+	 	screen_pos = (5,5)
 	 else:
-	 	screen_coords = (50,50)
-	 return glogo,screen_coords
+	 	screen_pos = (50,50)
+	 os.environ['SDL_VIDEO_WINDOW_POS'] = f"{screen_pos[0]},{screen_pos[1]}"
+	 return glogo
 
-def fonts(f):
-	fonts = {i[0]:pygame.font.SysFont(i[1], i[2], bold=True if i[3]=='bold' else False, italic=True if i[4]=='italic' else False) for i in f}
+def fonts(*args):
+	activate_fonts = [['Title', 'Arial', 48, 'bold', 'noitalic'], ['SubTitle', 'Arial', 24, 'bold', 'noitalic'], ['Text', 'Calibri', 16, 'nobold', 'noitalic']] + list(args)
+	fonts = {i[0]:pygame.font.SysFont(i[1], i[2], bold=True if i[3]=='bold' else False, italic=True if i[4]=='italic' else False) for i in activate_fonts}
 	return fonts
